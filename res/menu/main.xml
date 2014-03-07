@@ -1,0 +1,42 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/action_search"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="@string/action_search"/>
+    
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="@string/action_settings"/>
+
+    <item
+        android:id="@+id/action_chats"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_chats"/>
+    
+    <item
+        android:id="@+id/action_newchat"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="@string/action_newchat"/>
+    
+    <item
+        android:id="@+id/action_newgroup"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_newgroup"/>
+    
+    <item
+        android:id="@+id/action_contacts"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_contacts"/>
+    
+</menu>
