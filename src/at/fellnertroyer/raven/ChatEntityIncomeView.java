@@ -1,6 +1,7 @@
 package at.fellnertroyer.raven;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,58 +10,62 @@ import android.widget.TextView;
 
 public class ChatEntityIncomeView extends LinearLayout{
 
-	View v;
-	TextView lblName, lblText, lblDate;
-	String name, msg;
-	String date;				// <-- Date date
-
+	private View view;
+	private String name, msg;
+	private String date;
+	private boolean group;
+	private Color color;
+	
+	private TextView lblName, lblMsg, lblDate;
+	
 	public ChatEntityIncomeView(Context context, AttributeSet attrs,
 			int defStyle) {
 		super(context, attrs, defStyle);
-		v = LayoutInflater.from(context).inflate(R.layout.chat_entity_income_msg, this, true);
-		//addView(v);
-		init();
+		
+		init(context);
 	}
 
 	public ChatEntityIncomeView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		v = LayoutInflater.from(context).inflate(R.layout.chat_entity_income_msg, this, true);
-		//addView(v);
-		init();
+		
+		init(context);
 	}
 
 	public ChatEntityIncomeView(Context context) {
 		super(context);
-		v = LayoutInflater.from(context).inflate(R.layout.chat_entity_income_msg, this, true);
-		//addView(v);
-		init();
-	}
-
-	public ChatEntityIncomeView(Context context, String name, String msg, String time, boolean group){
-		super(context);
 		
-		//LayoutInflater  mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        //mInflater.inflate(R.layout.chat_entity_income_msg, this, true);
-		v = LayoutInflater.from(context).inflate(R.layout.chat_entity_income_msg, this, true);
-		//addView(v);
-		
-		init();
-		setMsg(msg);
-		setName(name);
-		setDate(time);
-		
-		lblName.setText(name);
-		lblText.setText(msg);
-		lblDate.setText(date);
+		init(context);
 	}
 	
-	private void init(){
-//		v = inflate(getContext(), R.layout.chat_entity_income_msg, null);
-//		addView(v);
-        
-		lblName = (TextView)v.findViewById(R.id.lbl_chatentity_income_name);
-		lblText = (TextView)v.findViewById(R.id.lbl_chatentity_income_text);
-		lblDate = (TextView)v.findViewById(R.id.lbl_chatentity_income_date);
+	public ChatEntityIncomeView(Context context, String name, String msg, String date, boolean group, Color nameColor) {
+		super(context);
+		this.name = name;
+		this.msg = msg;
+		this.date = date;
+		this.group = group;
+		this.color = color;
+		init(context);
+	}
+	
+	public void init(Context context){
+		LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		if (layoutInflater != null) {
+            view = layoutInflater.inflate(R.layout.chat_entity_income_msg, this, true);
+        }
+		
+		lblName = (TextView)view.findViewById(R.id.lbl_chatentity_income_name);
+		lblMsg = (TextView)view.findViewById(R.id.lbl_chatentity_income_text);
+		lblDate = (TextView)view.findViewById(R.id.lbl_chatentity_income_date);
+		
+		if(group){
+			lblName.setText(name);
+			lblName.setVisibility(View.VISIBLE);
+		} else {
+			lblName.setVisibility(View.GONE);
+		}
+		
+		lblMsg.setText(msg);
+		lblDate.setText(date);
 	}
 
 	public String getName() {
@@ -69,7 +74,6 @@ public class ChatEntityIncomeView extends LinearLayout{
 
 	public void setName(String name) {
 		this.name = name;
-		//lblName.setText(name);
 	}
 
 	public String getMsg() {
@@ -78,10 +82,8 @@ public class ChatEntityIncomeView extends LinearLayout{
 
 	public void setMsg(String msg) {
 		this.msg = msg;
-		//lblText.setText(msg);
+		lblMsg.setText(msg);
 	}
-	
-	// Date
 
 	public String getDate() {
 		return date;
@@ -89,12 +91,30 @@ public class ChatEntityIncomeView extends LinearLayout{
 
 	public void setDate(String date) {
 		this.date = date;
-		//lblDate.setText(date);
+		lblDate.setText(date);
 	}
 
-	@Override
-	protected void onLayout(boolean changed, int l, int t, int r, int b) {
-		// TODO Auto-generated method stub
-		
+	public boolean isGroup() {
+		return group;
 	}
+
+	public void setGroup(boolean group) {
+		this.group = group;
+		
+		if(group){
+			lblName.setText(name);
+			lblName.setVisibility(View.VISIBLE);
+		} else {
+			lblName.setVisibility(View.GONE);
+		}
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+	
 }

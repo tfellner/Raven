@@ -1,7 +1,9 @@
 package at.fellnertroyer.raven;
 
 import android.os.Bundle;
+import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
+import android.graphics.Color;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -36,9 +38,26 @@ public class ChatView extends Activity {
 	}
 	
 	private void dummyEntries(){
-		container.addView(new ChatEntityIncomeView(this,"Max Mustermann","Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut","Diestag 14:31",true));
-		container.addView(new ChatEntityIncomeView(this,"Max Mustermann","Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut","Diestag 14:31",true));
-		container.addView(new ChatEntityIncomeView(this,"Max Mustermann","Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut","Diestag 14:31",true));
-		container.addView(new ChatEntityIncomeView(this,"Max Mustermann","Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut","Diestag 14:31",true));
+		addIncomeMsg("Max Mustermann", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut", "14:31", true, null);
+		addIncomeMsg("Tobias", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr", "14:32", true, null);
+		
+		addOwnMsg("msg", "14:34", ChatEntityOwnMsgView.STATUS_SENT);
+		
+		addIncomeMsg("Tobias", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod", "14:51", true, null);
+		addIncomeMsg("Quaxi", "Lorem ipsum dolor", "16:10", true, null);
+		
+		addOwnMsg("Lorem ipsum dolor sit amet, consetetur", "16:41", ChatEntityOwnMsgView.STATUS_SENT);
+	}
+	
+	private void addIncomeMsg(String name, String text, String date, boolean group, Color nameColor){
+		ChatEntityIncomeView incomeMsg = new ChatEntityIncomeView(this, name, text, date, group, nameColor);
+		incomeMsg.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
+		container.addView(incomeMsg);
+	}
+	
+	private void addOwnMsg(String text, String date, int statusMode){
+		ChatEntityOwnMsgView ownMsg = new ChatEntityOwnMsgView(this, text, date, statusMode);
+		ownMsg.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
+		container.addView(ownMsg);
 	}
 }

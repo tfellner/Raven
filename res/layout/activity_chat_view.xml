@@ -104,14 +104,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical" >
-			
-            <include layout="@layout/chat_entity_income_msg"/>
-            <include layout="@layout/chat_entity_own_msg"/>
-
-            <at.fellnertroyer.raven.ChatEntityIncomeView
-                android:id="@+id/chatEntityIncomeView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
