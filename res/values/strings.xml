@@ -8,6 +8,7 @@
     <string name="action_newchat">Neuer Chat</string>
     <string name="action_newgroup">Neue Gruppe</string>
     <string name="action_contacts">Kontakte</string>
+    <string name="action_favorits">Favoriten</string>
     <string name="title_activity_chat_view">ChatView</string>
     <string name="hello_world">Hello world!</string>
 

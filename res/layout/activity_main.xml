@@ -5,6 +5,13 @@
     android:orientation="vertical"
     tools:context=".Main" >
 
+    <SearchView
+        android:id="@+id/search_chatlist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+    </SearchView>
+
     <ListView
         android:id="@+id/list_chatlist"
         android:layout_width="fill_parent"

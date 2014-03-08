@@ -13,12 +13,6 @@
         android:showAsAction="ifRoom"
         android:icon="@android:drawable/ic_menu_preferences"
         android:title="@string/action_settings"/>
-
-    <item
-        android:id="@+id/action_chats"
-        android:orderInCategory="100"
-        android:showAsAction="ifRoom"
-        android:title="@string/action_chats"/>
     
     <item
         android:id="@+id/action_newchat"
@@ -36,7 +30,12 @@
     <item
         android:id="@+id/action_contacts"
         android:orderInCategory="100"
-        android:showAsAction="never"
+        android:showAsAction="ifRoom"
         android:title="@string/action_contacts"/>
     
+    <item
+        android:id="@+id/action_favorits"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:title="@string/action_favorits"/>
 </menu>
