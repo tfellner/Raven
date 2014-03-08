@@ -1,62 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:background="#DDD"
-    android:orientation="horizontal" >
-
-    <TextView
-        android:id="@+id/lbl_chatentity_triangle1"
-        android:layout_width="10dp"
-        android:layout_height="20dp"
-        android:layout_gravity="bottom"
-        android:background="@drawable/triangle"
-        android:layout_marginBottom="9dp"
-        android:text=" "/>
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/chat_entity_income_msg_drawable"
-        android:orientation="vertical"
-        android:padding="10dp" >
+        android:orientation="horizontal" >
 
         <TextView
-            android:id="@+id/lbl_chatentity_income_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="3dp"
-            android:text="Max Mustermann"
-            android:textColor="@android:color/holo_blue_dark"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/lbl_chatentity_income_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxWidth="240dp"
-            android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut"
-            android:textColor="#000"
-            android:textSize="16sp" />
+            android:id="@+id/lbl_chatentity_triangle1"
+            android:layout_width="10dp"
+            android:layout_height="20dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/triangle"
+            android:text=" " />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right" >
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/chat_entity_income_msg_drawable"
+            android:orientation="vertical"
+            android:padding="10dp" >
 
             <TextView
-                android:id="@+id/lbl_chatentity_income_date"
+                android:id="@+id/lbl_chatentity_income_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:text="Dienstag 14:31"
-                android:textColor="#777"
-                android:textSize="12sp" />
+                android:paddingBottom="3dp"
+                android:text="Max Mustermann"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="16sp" />
 
+            <TextView
+                android:id="@+id/lbl_chatentity_income_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxWidth="240dp"
+                android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut"
+                android:textColor="#000"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right" >
+
+                <TextView
+                    android:id="@+id/lbl_chatentity_income_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:text="Dienstag 14:31"
+                    android:textColor="#777"
+                    android:textSize="12sp" />
+            </LinearLayout>
         </LinearLayout>
-
     </LinearLayout>
 
-</LinearLayout>
+</merge>

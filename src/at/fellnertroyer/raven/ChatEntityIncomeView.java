@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,25 +17,33 @@ public class ChatEntityIncomeView extends LinearLayout{
 	public ChatEntityIncomeView(Context context, AttributeSet attrs,
 			int defStyle) {
 		super(context, attrs, defStyle);
+		v = LayoutInflater.from(context).inflate(R.layout.chat_entity_income_msg, this, true);
+		//addView(v);
 		init();
 	}
 
 	public ChatEntityIncomeView(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		v = LayoutInflater.from(context).inflate(R.layout.chat_entity_income_msg, this, true);
+		//addView(v);
 		init();
 	}
 
 	public ChatEntityIncomeView(Context context) {
 		super(context);
+		v = LayoutInflater.from(context).inflate(R.layout.chat_entity_income_msg, this, true);
+		//addView(v);
 		init();
 	}
 
 	public ChatEntityIncomeView(Context context, String name, String msg, String time, boolean group){
 		super(context);
 		
-		LayoutInflater  mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        mInflater.inflate(R.layout.chat_entity_income_msg, this, true);
-        
+		//LayoutInflater  mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        //mInflater.inflate(R.layout.chat_entity_income_msg, this, true);
+		v = LayoutInflater.from(context).inflate(R.layout.chat_entity_income_msg, this, true);
+		//addView(v);
+		
 		init();
 		setMsg(msg);
 		setName(name);
@@ -48,9 +55,9 @@ public class ChatEntityIncomeView extends LinearLayout{
 	}
 	
 	private void init(){
-		v = inflate(getContext(), R.layout.chat_entity_income_msg, null);
-        addView(v);
-		
+//		v = inflate(getContext(), R.layout.chat_entity_income_msg, null);
+//		addView(v);
+        
 		lblName = (TextView)v.findViewById(R.id.lbl_chatentity_income_name);
 		lblText = (TextView)v.findViewById(R.id.lbl_chatentity_income_text);
 		lblDate = (TextView)v.findViewById(R.id.lbl_chatentity_income_date);
