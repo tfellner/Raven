@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="chatAddChoice">
+	    <item>Foto oder Video aufnehmen</item>
+	    <item>Foto auswählen</item>
+	    <item>Video auswählen</item>
+	    <item>Standort senden</item>
+	    <item>Kontakt senden</item>
+	</string-array>  
+</resources>

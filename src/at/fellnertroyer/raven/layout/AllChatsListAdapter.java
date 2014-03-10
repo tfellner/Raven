@@ -1,4 +1,4 @@
-package at.fellnertroyer.raven;
+package at.fellnertroyer.raven.layout;
 
 import java.util.List;
 
@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import at.fellnertroyer.raven.R;
+import at.fellnertroyer.raven.data.ChatContainer;
 
 public class AllChatsListAdapter extends ArrayAdapter<ChatContainer>{
 	

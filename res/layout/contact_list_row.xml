@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:padding="10dp"
-    android:orientation="horizontal" >
+    android:layout_height="wrap_content"
+    android:background="#FFF"
+    android:orientation="horizontal"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
 
     <ImageView
-        android:id="@+id/img_chatlist_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/img_contactlist_icon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_gravity="center_vertical"
         android:layout_marginBottom="5dp"
         android:layout_marginRight="15dp"
@@ -26,23 +30,25 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/lbl_chatlist_name"
+                android:id="@+id/lbl_contactlist_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.8"
                 android:text="M.Mustermann"
-                android:textSize="20sp"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/lbl_chatlist_date"
+                android:id="@+id/lbl_contactlist_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_weight="0.2"
-                android:gravity="right|top"
-                android:text="00:00"
-                android:textColor="@android:color/holo_blue_light" />
+                android:layout_gravity="right|bottom"
+                android:layout_weight="0.8"
+                android:gravity="right"
+                android:text="Admin"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="12sp" />
 
         </LinearLayout>
 
@@ -51,12 +57,13 @@
             android:layout_height="match_parent" >
 
             <TextView
-                android:id="@+id/lbl_chatlist_lastmsg"
+                android:id="@+id/lbl_contactlist_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Lorem Ipsum Quaxi Günter ..."
-                android:textColor="#AAA" />
+                android:textColor="#AAA"
+                android:textSize="12sp" />
 
         </LinearLayout>
 

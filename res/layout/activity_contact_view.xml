@@ -1,0 +1,80 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/borderbottom"
+    android:orientation="vertical"
+    tools:context=".ContactView" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@drawable/borderbottom" >
+
+        <LinearLayout
+            android:id="@+id/layout_contacts_header_back"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"
+            android:focusableInTouchMode="true">
+
+            <TextView
+                android:id="@+id/lbl_contacts_header_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="Chats"
+                android:textColor="@android:color/holo_blue_light"
+                android:textSize="19sp"
+                android:onClick="btnContactsBackClicked"
+                android:clickable="true"
+                android:width="70dp" />
+
+            <LinearLayout
+                android:id="@+id/layout_contacts_header_middle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/lbl_contacts_header_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_weight="1.5"
+                    android:gravity="center_vertical"
+                    android:text="@string/title_activity_contact_view"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+            </LinearLayout>
+            
+        </LinearLayout>
+
+    </LinearLayout>
+    
+    <SearchView
+        android:id="@+id/search_contact_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+    </SearchView>
+
+    <ListView
+        android:id="@+id/list_contactlist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+    </ListView>
+
+</LinearLayout>

@@ -12,9 +12,9 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
-            android:name="at.fellnertroyer.raven.Main"
+            android:name="at.fellnertroyer.raven.layout.Main"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,8 +23,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="at.fellnertroyer.raven.ChatView"
+            android:name="at.fellnertroyer.raven.layout.ChatView"
             android:label="@string/title_activity_chat_view" >
+        </activity>
+        <activity
+            android:name="at.fellnertroyer.raven.layout.GroupInfo"
+            android:label="@string/title_activity_group_info" >
+        </activity>
+        <activity
+            android:name="at.fellnertroyer.raven.layout.ContactView"
+            android:label="@string/title_activity_contact_view" >
+        </activity>
+        <activity
+            android:name="at.fellnertroyer.raven.layout.NewGroup"
+            android:label="@string/title_activity_new_group" >
         </activity>
     </application>
 

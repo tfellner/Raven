@@ -1,4 +1,4 @@
-package at.fellnertroyer.raven;
+package at.fellnertroyer.raven.layout;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SearchView;
+import at.fellnertroyer.raven.R;
+import at.fellnertroyer.raven.data.ChatContainer;
 
 public class Main extends Activity {
 
@@ -16,6 +18,9 @@ public class Main extends Activity {
 	SearchView search;
 	AllChatsListAdapter adapter;
 	public static final String TAG = "Raven";
+	
+	private static final int REQUEST_CHAT_VIEW = 111;
+	private static final int REQUEST_CONTACT_VIEW = 222;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +56,11 @@ public class Main extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
-		
+		Intent intent;
 		switch (id) {
 		case R.id.action_contacts:
-				
+			intent = new Intent(this, ContactView.class);
+			startActivityForResult(intent, REQUEST_CONTACT_VIEW);
 			break;
 		case R.id.action_newchat:
 			
@@ -74,8 +80,8 @@ public class Main extends Activity {
 		case R.id.action_settings: 
 			
 			//Just to debug - wrong position of ChatView
-			Intent intent = new Intent(this, ChatView.class);
-			startActivity(intent);
+			intent = new Intent(this, ChatView.class);
+			startActivityForResult(intent, REQUEST_CHAT_VIEW);
 			break;
 		case R.id.action_favorits:
 			

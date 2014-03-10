@@ -10,7 +10,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/chat_entity_own_msg_drawable"
             android:gravity="right"
@@ -48,7 +48,7 @@
             android:layout_width="10dp"
             android:layout_height="20dp"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="6dp"
             android:background="@drawable/triangle_reverse"
             android:text=" " />
     </LinearLayout>
