@@ -1,5 +1,6 @@
 package at.fellnertroyer.raven.layout;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -12,11 +13,19 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.SearchView;
 import at.fellnertroyer.raven.R;
+import at.fellnertroyer.raven.data.ChatContainer;
+import at.fellnertroyer.raven.data.ChatInfo;
+import at.fellnertroyer.raven.data.Contact;
 import at.fellnertroyer.raven.data.GlobalInformation;
 import at.fellnertroyer.raven.data.GroupChatContainer;
+import at.fellnertroyer.raven.data.IncomeMessage;
+import at.fellnertroyer.raven.data.OwnMessage;
+import at.fellnertroyer.raven.data.SingleChatContainer;
 
 public class Main extends Activity {
 
@@ -35,7 +44,8 @@ public class Main extends Activity {
 		setContentView(R.layout.activity_main);
 		Log.d(TAG,"onCreate");
 		init();
-		dummyEntries();
+		loadData(true);
+		
 	}
 	
 	public void init(){
@@ -57,6 +67,20 @@ public class Main extends Activity {
 			    return false;
 		    }
 		});
+		
+		list.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View view, int pos,
+					long id) {
+				startChatView(pos);
+			}
+		});
+	}
+	
+	public void startChatView(int index){
+		Intent intent = new Intent(this,ChatView.class);
+		intent.putExtra(ChatView.EXTRA_INDEX, index);
+		startActivityForResult(intent, REQUEST_CHAT_VIEW);
 	}
 
 	@Override
@@ -84,10 +108,6 @@ public class Main extends Activity {
 			}
 			break;
 		case R.id.action_settings: 
-			
-			//Just to debug - wrong position of ChatView
-			intent = new Intent(this, ChatView.class);
-			startActivityForResult(intent, REQUEST_CHAT_VIEW);
 			break;
 		case R.id.action_favorits:
 			
@@ -105,27 +125,85 @@ public class Main extends Activity {
 		return true;
 	}
 	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		loadData(false);
+		
+		super.onActivityResult(requestCode, resultCode, data);
+	}
+
 	public void dummyEntries(){
 		Log.d(TAG,"dummyEntries");
+		
+		GlobalInformation.allChats = new ArrayList<ChatContainer>();
+		GlobalInformation.allContacts = new ArrayList<Contact>();
+		
+		GlobalInformation.allContacts.add(new Contact("Tobias","Yo!"));
+		GlobalInformation.allContacts.add(new Contact("Quaxi","Halloooo"));
+		GlobalInformation.allContacts.add(new Contact("M.Mustermann","😜😝😎🔜🔞🔫🔪"));
+		GlobalInformation.allContacts.add(new Contact("Günter","@Home"));
+		GlobalInformation.allContacts.add(new Contact("Jochen","hat hunger"));
+		GlobalInformation.allContacts.add(new Contact("Lintschi","bin müde *Gäähn* - will schlafen "));
+		GlobalInformation.allContacts.add(new Contact("Ziegenpeter","hat irgendwer die Heidi gesehen?"));
+		GlobalInformation.allContacts.add(new Contact("Heidi","Hoits ma den Peter vom Leib!! >.<"));
+		GlobalInformation.allContacts.add(new Contact("Billy","Auf Geschäftsreise - Verhandeln ❤️"));
+		GlobalInformation.allContacts.add(new Contact("Mes","OnePiece"));
+		GlobalInformation.allContacts.add(new Contact("Aschauer","Ups jz ho is zbissn"));
+		GlobalInformation.allContacts.add(new Contact("Paul","He du Topf!"));
+		GlobalInformation.allContacts.add(new Contact("Luki","Hat irgendein Knabe lust auf interaktive Kommunkikation"));
+		
 		GregorianCalendar c1 = new GregorianCalendar();
 		c1.set(Calendar.DAY_OF_MONTH, 1);
 		
 		GregorianCalendar c2 = new GregorianCalendar();
-		c1.set(Calendar.DAY_OF_WEEK, 3);
+		c2.set(Calendar.DAY_OF_WEEK, 1);
 		
-		adapter.add(new GroupChatContainer("M.Mustermann", 	"Lorem Ipsum Quaxi Günter", 			c1));
-		adapter.add(new GroupChatContainer("David", 		"Lorem Ipsum Quaxi Jochen", 			c2));
-		adapter.add(new GroupChatContainer("Tobias", 		"Lorem Ipsum Quaxi Rüdiger Peter ...", 	new GregorianCalendar()));
-		adapter.add(new GroupChatContainer("Jochen", 		"Lorem Ipsum Quaxi Günter",			 	new GregorianCalendar()));
-		adapter.add(new GroupChatContainer("Günter", 		"Lorem Ipsum Quaxi Jochen", 			new GregorianCalendar()));
-		adapter.add(new GroupChatContainer("Quaxi", 		"Lorem Ipsum Quaxi Rüdiger Peter ...", 	new GregorianCalendar()));
-		adapter.add(new GroupChatContainer("Rüdiger", 		"Lorem Ipsum Quaxi Günter",		 		new GregorianCalendar()));
-		adapter.add(new GroupChatContainer("Peter", 		"Lorem Ipsum Quaxi Jochen", 			new GregorianCalendar()));
+		GlobalInformation.allChats.add(new SingleChatContainer(GlobalInformation.allContacts.get(0), c1));
+		GlobalInformation.allChats.add(new SingleChatContainer(GlobalInformation.allContacts.get(1), c2));
+		GlobalInformation.allChats.add(new GroupChatContainer("Quaxi Günter", new GregorianCalendar()));
+		GlobalInformation.allChats.add(new SingleChatContainer(GlobalInformation.allContacts.get(2), new GregorianCalendar()));
+		GlobalInformation.allChats.add(new SingleChatContainer(GlobalInformation.allContacts.get(3), new GregorianCalendar()));
+		GlobalInformation.allChats.add(new SingleChatContainer(GlobalInformation.allContacts.get(4), new GregorianCalendar()));
+		GlobalInformation.allChats.add(new SingleChatContainer(GlobalInformation.allContacts.get(5), new GregorianCalendar()));
+		GlobalInformation.allChats.add(new SingleChatContainer(GlobalInformation.allContacts.get(6), new GregorianCalendar()));
+		GlobalInformation.allChats.add(new SingleChatContainer(GlobalInformation.allContacts.get(7), new GregorianCalendar()));
 		
-		
+		for(ChatContainer container : GlobalInformation.allChats){
+			
+			if(container instanceof SingleChatContainer){
+				container.addChatEntity(new IncomeMessage("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut", c1, ((SingleChatContainer) container).getPartner()));
+				container.addChatEntity(new IncomeMessage("Lorem ipsum dolor sit amet, consetetur sadipscing elitr", c2, ((SingleChatContainer) container).getPartner()));
+				container.addChatEntity(new OwnMessage("Lorem 😝", new GregorianCalendar()));
+				container.addChatEntity(new IncomeMessage("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",  new GregorianCalendar(), ((SingleChatContainer) container).getPartner()));
+				container.addChatEntity(new IncomeMessage("Lorem ipsum dolor", new GregorianCalendar(), ((SingleChatContainer) container).getPartner()));
+				container.addChatEntity(new OwnMessage("Lorem ipsum dolor sit amet! :P", new GregorianCalendar()));
+			} 
+			if(container instanceof GroupChatContainer){
+				((GroupChatContainer) container).addMember(GlobalInformation.allContacts.get(0));
+				((GroupChatContainer) container).addMember(GlobalInformation.allContacts.get(1));
+				((GroupChatContainer) container).addMember(GlobalInformation.allContacts.get(2));
+				((GroupChatContainer) container).addMember(GlobalInformation.allContacts.get(3));
+				
+				container.addChatEntity(new IncomeMessage("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut", c1, ((GroupChatContainer)container).getMembers().get(3)));
+				container.addChatEntity(new IncomeMessage("Lorem ipsum dolor sit amet, consetetur sadipscing elitr", c2, ((GroupChatContainer)container).getMembers().get(1)));
+				container.addChatEntity(new ChatInfo("M.Mustermann hat die Unterhaltung verlassen"));
+				container.addChatEntity(new OwnMessage("Lorem 😝", new GregorianCalendar()));
+				container.addChatEntity(new IncomeMessage("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod",  new GregorianCalendar(), ((GroupChatContainer)container).getMembers().get(1)));
+				container.addChatEntity(new ChatInfo("M.Mustermann wurde hinzugefügt"));
+				container.addChatEntity(new IncomeMessage("Lorem ipsum dolor", new GregorianCalendar(), ((GroupChatContainer)container).getMembers().get(2)));
+				container.addChatEntity(new OwnMessage("Lorem ipsum dolor sit amet! :P", new GregorianCalendar()));
+			} 
+		}
 	}
 	
-	public void loadSettings(){
+	public void loadData(boolean dummy){
+		if(dummy){
+			dummyEntries();
+		}
+		adapter = new AllChatsListAdapter(this, R.layout.all_chats_list_row,GlobalInformation.allChats);
+		list.setAdapter(adapter);
+		Log.d(TAG, "letze Nachricht: für: " + GlobalInformation.allChats.get(0).getName() + ":" + GlobalInformation.allChats.get(0).getLastMsgString());
+		
 		// obtain telNr
 //		TelephonyManager tMgr = (TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
 //		GlobalInformation.telNr = tMgr.getLine1Number();
@@ -154,8 +232,6 @@ public class Main extends Activity {
 //                }
 //            }
 //        }
-		
-		
 	}
 
 }

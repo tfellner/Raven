@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import at.fellnertroyer.raven.R;
 import at.fellnertroyer.raven.data.Contact;
+import at.fellnertroyer.raven.data.GlobalInformation;
 
 public class ContactView extends Activity {
 
@@ -23,7 +24,6 @@ public class ContactView extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_contact_view);
 		init();
-		dummyEntities();
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -38,27 +38,11 @@ public class ContactView extends Activity {
 		adapter = new ContactListAdapter(this, R.layout.all_chats_list_row);
 		list.setAdapter(adapter);
 		search = (SearchView)findViewById(R.id.search_contact_view);
+		adapter.addAll(GlobalInformation.allContacts);
 		//search.setIconified(false);
 	}
 	
 	public void btnContactsBackClicked(final View v){
 		finish();
 	}
-	
-	private void dummyEntities() {
-		adapter.add(new Contact("Tobias","Yo!"));
-		adapter.add(new Contact("Quaxi","Halloooo"));
-		adapter.add(new Contact("M.Mustermann","😜😝😎🔜🔞🔫🔪"));
-		adapter.add(new Contact("Günter","@Home"));
-		adapter.add(new Contact("Jochen","hat hunger"));
-		adapter.add(new Contact("Lintschi","bin müde *Gäähn* - will schlafen "));
-		adapter.add(new Contact("Ziegenpeter","hat irgendwer die Heidi gesehen?"));
-		adapter.add(new Contact("Heidi","Hoits ma den Peter vom Leib!! >.<"));
-		adapter.add(new Contact("Billy","Auf Geschäftsreise - Verhandeln ❤️"));
-		adapter.add(new Contact("Mes","OnePiece"));
-		adapter.add(new Contact("Aschauer","Ups jz ho is zbissn"));
-		adapter.add(new Contact("Paul","He du Topf!"));
-		adapter.add(new Contact("Luki","Hat irgendein Knabe lust auf interaktive Kommunkikation"));
-	}
-
 }

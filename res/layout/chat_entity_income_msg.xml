@@ -53,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:text="Dienstag 14:31"
-                    android:textColor="#777"
+                    android:textColor="#999"
                     android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>

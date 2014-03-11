@@ -3,6 +3,7 @@ package at.fellnertroyer.raven.data;
 public class Contact {
 	private String name;
 	private String status;
+	private boolean online;
 	
 	public Contact(String name, String status){
 		this.name = name;
@@ -26,6 +27,12 @@ public class Contact {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
-	
+
+	public boolean isOnline() {
+		return online;
+	}
+
+	public void setOnline(boolean online) {
+		this.online = online;
+	}
 }

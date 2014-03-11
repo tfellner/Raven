@@ -6,7 +6,7 @@ public class OwnMessage extends Message{
 	
 	public enum MsgStatus{
 		STATUS_SENT,
-		STATUS_UNSEEN,
+		STATUS_UNSENT,
 		STATUS_SEEN;
 	}
 	

@@ -2,7 +2,7 @@ package at.fellnertroyer.raven.data;
 
 import java.util.GregorianCalendar;
 
-public class Message extends ChatEntity{
+public abstract class Message extends ChatEntity{
 	private String msg;
 	private GregorianCalendar date;
 	
@@ -26,5 +26,9 @@ public class Message extends ChatEntity{
 
 	public void setDate(GregorianCalendar date) {
 		this.date = date;
+	}
+	
+	public String getDateString(){
+		return GlobalInformation.getDateString(date);
 	}
 }

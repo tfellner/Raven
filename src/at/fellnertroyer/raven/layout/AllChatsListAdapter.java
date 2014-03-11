@@ -103,9 +103,8 @@ public class AllChatsListAdapter extends ArrayAdapter<ChatContainer>{
 	        		lblDate.setText(GlobalInformation.getDateString(chat.getLastMsgDate()));
 	        	}
 	        	if(lblLastMsg != null){
-	        		lblLastMsg.setText(chat.getLastMsg());
+	        		lblLastMsg.setText(chat.getLastMsgString());
 	        	}
-	        	
 	        	Log.d(Main.TAG,"+ " + chat.getName());
 	        }
 		}

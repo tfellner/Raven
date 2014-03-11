@@ -17,6 +17,4 @@ public class IncomeMessage extends Message{
 	public void setContact(Contact contact) {
 		this.contact = contact;
 	}
-	
-	
 }

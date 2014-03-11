@@ -61,8 +61,8 @@ public class ChatEntityIncomeView extends LinearLayout{
 		lblDate = (TextView)view.findViewById(R.id.lbl_chatentity_income_date);
 		
 		if(group){
-			lblName.setText(name);
 			lblName.setVisibility(View.VISIBLE);
+			lblName.setText(name);
 			lblName.setTextColor(color);
 			
 		} else {

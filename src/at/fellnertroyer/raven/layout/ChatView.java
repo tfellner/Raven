@@ -1,24 +1,32 @@
 package at.fellnertroyer.raven.layout;
 
-import android.os.Bundle;
+import java.util.GregorianCalendar;
+
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
+import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import at.fellnertroyer.raven.R;
+import at.fellnertroyer.raven.data.ChatContainer;
+import at.fellnertroyer.raven.data.ChatEntity;
+import at.fellnertroyer.raven.data.ChatInfo;
+import at.fellnertroyer.raven.data.GlobalInformation;
+import at.fellnertroyer.raven.data.GroupChatContainer;
+import at.fellnertroyer.raven.data.IncomeMessage;
+import at.fellnertroyer.raven.data.OwnMessage;
+import at.fellnertroyer.raven.data.OwnMessage.MsgStatus;
+import at.fellnertroyer.raven.data.SingleChatContainer;
 
 public class ChatView extends Activity {
 
@@ -30,22 +38,76 @@ public class ChatView extends Activity {
 	private EditText txtInput;
 	private TextView lblChatInfo1;
 	private TextView lblChatInfo2;
+	private TextView lblName;
 	private boolean group;
 	
+	private int chatContainerIndex = -1;
+	private ChatContainer chatContainer = null;
+	
 	private static final int REQUEST_GROUP_INFO = 121;
+	public static final String EXTRA_INDEX = "Index";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_chat_view);
+		
+		Intent intent = getIntent();
+		Bundle params = intent.getExtras();
+		if(params != null){
+			chatContainerIndex = params.getInt(EXTRA_INDEX);
+		}
 		init();
-		dummyEntries();
+		
+		if(chatContainerIndex == -1){
+			dummyEntries();
+		} else {
+			loadChatContainer();
+		}
+	}
+	
+	private void loadChatContainer(){
+		chatContainer = GlobalInformation.allChats.get(chatContainerIndex);
+		if(chatContainer instanceof GroupChatContainer){
+			group = true;
+			lblName.setText(chatContainer.getName());
+			lblChatInfo1.setText(((GroupChatContainer)chatContainer).getMemberCount() + " Mitglieder");
+			lblChatInfo2.setVisibility(View.VISIBLE);
+			lblChatInfo2.setText(((GroupChatContainer)chatContainer).getMemberOnlineCount() + " online");
+		}
+		if(chatContainer instanceof SingleChatContainer){
+			group = false;
+			lblName.setText(chatContainer.getName());
+			lblChatInfo1.setText((((SingleChatContainer)chatContainer).isPartnerOnline() ? "online" : "zuletzt online: 00:00"));
+			lblChatInfo2.setVisibility(View.GONE);
+		}
+		
+		for(ChatEntity ce : chatContainer.getChatEntityList()){
+			if(ce instanceof IncomeMessage){
+				IncomeMessage im = (IncomeMessage)ce;
+				int color = getResources().getColor(android.R.color.holo_purple);
+				if(chatContainer instanceof GroupChatContainer){
+					color = ((GroupChatContainer)chatContainer).getColor(im.getContact());
+				}
+				addIncomeMsg(im.getContact().getName(), im.getMsg(), im.getDateString(), group, color);
+			}
+			if(ce instanceof OwnMessage){
+				OwnMessage om = (OwnMessage)ce;
+				addOwnMsg(om.getMsg(), om.getDateString(), om.getStatus());
+			}
+			if(ce instanceof ChatInfo){
+				ChatInfo ci = (ChatInfo)ce;
+				addInfo(ci.getText());
+			}
+		}
 	}
 	
 	private void init(){
 		scroll = (ScrollView)findViewById(R.id.scroll_chat);
+		
 		container = (LinearLayout)findViewById(R.id.llayout_chat_container);
+		
 		txtInput = (EditText)findViewById(R.id.txt_chat_input);
 		txtInput.setSelected(false);
 		
@@ -53,20 +115,35 @@ public class ChatView extends Activity {
 		layoutInfo = (LinearLayout)findViewById(R.id.layout_chat_header_middle);
 		imgAdd = (ImageView)findViewById(R.id.img_chat_add);
 		
+		lblName =  (TextView)findViewById(R.id.lbl_chat_header_name);
 		lblChatInfo1 = (TextView)findViewById(R.id.lbl_chat_header_info);
 		lblChatInfo2 = (TextView)findViewById(R.id.lbl_chat_header_info2);
 		
+		container.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				txtInput.setEnabled(false);
+				txtInput.setEnabled(true);
+			}
+		});
 	}
 	
 	public void btnChatSendClicked(final View v){
 		String text = txtInput.getText().toString();
 		if(!text.isEmpty()){
-			addOwnMsg(text,"18:25",ChatEntityOwnMsgView.STATUS_SENT);
+			GregorianCalendar now = new GregorianCalendar();
+			GlobalInformation.allChats.get(chatContainerIndex).addChatEntity(new OwnMessage(text,now));
+			addOwnMsg(text,GlobalInformation.getDateString(now),MsgStatus.STATUS_UNSENT);
 			txtInput.setText("");
-			scroll.fullScroll(ScrollView.FOCUS_DOWN);
+			//scroll.fullScroll(ScrollView.FOCUS_DOWN);
+			
+			scroll.post(new Runnable() { 
+			     public void run() {
+			    	 scroll.fullScroll(View.FOCUS_DOWN);
+			     }
+			 });
 		}
-//		txtInput.setEnabled(false);
-//		txtInput.setEnabled(true);
 		
 	}
 	
@@ -77,8 +154,14 @@ public class ChatView extends Activity {
 	
 	public void btnChatInfoClicked(final View v){
 		Log.d(Main.TAG,"btnChatInfoClicked");
-		Intent intent = new Intent(this,GroupInfo.class);
-		startActivityForResult(intent, REQUEST_GROUP_INFO);
+		
+		if(group){
+			Intent intent = new Intent(this,GroupInfo.class);
+			startActivityForResult(intent, REQUEST_GROUP_INFO);
+		} else {
+			txtInput.setEnabled(false);
+			txtInput.setEnabled(true);
+		}
 	}
 
 	public void btnChatAddClicked(final View v){
@@ -106,14 +189,14 @@ public class ChatView extends Activity {
 		
 		addInfo("Max Mustermann hat die Gruppe verlassen");
 		
-		addOwnMsg("Lorem 😝", "14:34", ChatEntityOwnMsgView.STATUS_SENT);
+		addOwnMsg("Lorem 😝", "14:34", MsgStatus.STATUS_SENT);
 		
 		addInfo("Quaxi wurde hinzugefügt");
 		
 		addIncomeMsg("Tobias", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod", "14:51", true, getResources().getColor(android.R.color.holo_orange_light));
 		addIncomeMsg("Quaxi", "Lorem ipsum dolor", "16:10", true, getResources().getColor(android.R.color.holo_purple));
 		
-		addOwnMsg("Lorem ipsum dolor sit amet, consetetur", "16:41", ChatEntityOwnMsgView.STATUS_SENT);
+		addOwnMsg("Lorem ipsum dolor sit amet, consetetur", "16:41", MsgStatus.STATUS_SENT);
 	}
 	
 	private void addInfo(String infotxt){
@@ -128,8 +211,8 @@ public class ChatView extends Activity {
 		container.addView(incomeMsg);
 	}
 	
-	private void addOwnMsg(String text, String date, int statusMode){
-		ChatEntityOwnMsgView ownMsg = new ChatEntityOwnMsgView(this, text, date, statusMode);
+	private void addOwnMsg(String text, String date, OwnMessage.MsgStatus status){
+		ChatEntityOwnMsgView ownMsg = new ChatEntityOwnMsgView(this, text, date, status);
 		ownMsg.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
 		container.addView(ownMsg);
 	}

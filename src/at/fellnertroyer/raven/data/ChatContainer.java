@@ -5,7 +5,6 @@ import java.util.GregorianCalendar;
 
 public abstract class ChatContainer {
 	private String name;
-	private String lastMsg;
 	private GregorianCalendar lastMsgDate;
 	private GregorianCalendar createDate;
 	private int unseen = 0;
@@ -15,18 +14,16 @@ public abstract class ChatContainer {
 	private ArrayList<ChatEntity> chatEntityUnseenList = new ArrayList<ChatEntity>();
 	
 	
-	public ChatContainer(String name, String lastMsg, GregorianCalendar lastMsgDate, int unseen) {
+	public ChatContainer(String name, GregorianCalendar lastMsgDate, int unseen) {
 		super();
 		this.name = name;
-		this.lastMsg = lastMsg;
 		this.lastMsgDate = lastMsgDate;
 		this.unseen = unseen;
 	}
 	
-	public ChatContainer(String name, String lastMsg, GregorianCalendar lastMsgDate) {
+	public ChatContainer(String name, GregorianCalendar lastMsgDate) {
 		super();
 		this.name = name;
-		this.lastMsg = lastMsg;
 		this.lastMsgDate = lastMsgDate;
 	}
 	
@@ -37,7 +34,7 @@ public abstract class ChatContainer {
 	public void addUnseenChatEntity(ChatEntity chatEntity){
 		chatEntityUnseenList.add(chatEntity);
 		
-		int unseen = 0;
+		unseen = 0;
 		for(ChatEntity e : chatEntityUnseenList){
 			if(e instanceof IncomeMessage){
 				unseen++;
@@ -51,8 +48,28 @@ public abstract class ChatContainer {
 		unseen = 0;
 	}
 
+	public Message getLastMsg(){
+		if(chatEntityUnseenList.size() > 0 && chatEntityList != null){
+			for(int i = chatEntityUnseenList.size()-1; i >= 0; i--){
+				ChatEntity ce = chatEntityUnseenList.get(i);
+				if(ce instanceof Message){
+					return (Message)ce;
+				}
+			}
+		} else if(chatEntityList.size() > 0 && chatEntityList != null){
+			for(int i = chatEntityList.size()-1; i >= 0; i--){
+				ChatEntity ce = chatEntityList.get(i);
+				if(ce instanceof Message){
+					return (Message)ce;
+				}
+			}
+		}
+		return null;
+	}
 	
-	
+	public String getLastMsgString(){
+		return getLastMsg().getMsg();
+	}
 	
 	// Getter & Setter
 	
@@ -62,14 +79,6 @@ public abstract class ChatContainer {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getLastMsg() {
-		return lastMsg;
-	}
-
-	public void setLastMsg(String lastMsg) {
-		this.lastMsg = lastMsg;
 	}
 
 	public GregorianCalendar getLastMsgDate() {

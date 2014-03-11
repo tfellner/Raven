@@ -8,17 +8,15 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import at.fellnertroyer.raven.R;
+import at.fellnertroyer.raven.data.OwnMessage;
 
 public class ChatEntityOwnMsgView extends LinearLayout{
 
-	public static final int STATUS_SENT = 0;
-	public static final int STATUS_UNSEEN = 1;
-	public static final int STATUS_SEEN = 2;
 	
 	private View view;
 	private String msg;
 	private String date;
-	private int satusMode;
+	private OwnMessage.MsgStatus satusMode;
 	
 	private TextView lblMsg, lblDate;
 	
@@ -41,7 +39,7 @@ public class ChatEntityOwnMsgView extends LinearLayout{
 		init(context);
 	}
 	
-	public ChatEntityOwnMsgView(Context context, String msg, String date, int statusMode) {
+	public ChatEntityOwnMsgView(Context context, String msg, String date, OwnMessage.MsgStatus statusMode) {
 		super(context);
 		this.msg = msg;
 		this.date = date;
@@ -80,11 +78,11 @@ public class ChatEntityOwnMsgView extends LinearLayout{
 		lblDate.setText(date);
 	}
 
-	public int getSatusMode() {
+	public OwnMessage.MsgStatus getSatusMode() {
 		return satusMode;
 	}
 
-	public void setSatusMode(int satusMode) {
+	public void setSatusMode(OwnMessage.MsgStatus satusMode) {
 		this.satusMode = satusMode;
 	}
 }
