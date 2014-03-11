@@ -2,6 +2,8 @@
 <resources>
 
     <string name="app_name">Raven</string>
+    <string name="hello_world">Hello world!</string>
+    
     <string name="action_settings">Settings</string>
     <string name="action_chats">Chats</string>
     <string name="action_search">Suchen</string>
@@ -9,11 +11,17 @@
     <string name="action_newgroup">Neue Gruppe</string>
     <string name="action_contacts">Kontakte</string>
     <string name="action_favorits">Favoriten</string>
+    
     <string name="title_activity_chat_view">ChatView</string>
-    <string name="hello_world">Hello world!</string>
+    
     <string name="group_info_notification">Benachrichtigungen</string>
+    
     <string name="title_activity_group_info">Gruppeninfo</string>
     <string name="title_activity_contact_view">Kontakte</string>
     <string name="title_activity_new_group">NewGroup</string>
 
+    <string name="chat_entity_info_contact_added">wurde hinzugefügt</string>
+    <string name="chat_entity_info_contact_left">hat die Unterhaltung verlassen</string>
+    
+    <string name="chat_group_info_members">Mitglieder</string>
 </resources>

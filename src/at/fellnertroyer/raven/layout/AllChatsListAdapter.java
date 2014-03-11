@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import at.fellnertroyer.raven.R;
 import at.fellnertroyer.raven.data.ChatContainer;
+import at.fellnertroyer.raven.data.GlobalInformation;
 
 public class AllChatsListAdapter extends ArrayAdapter<ChatContainer>{
 	
@@ -96,16 +97,16 @@ public class AllChatsListAdapter extends ArrayAdapter<ChatContainer>{
 	        		img.setImageResource(R.drawable.ic_launcher);
 	        	}
 	        	if(lblName != null){
-	        		lblName.setText(chat.name);
+	        		lblName.setText(chat.getName());
 	        	}
 	        	if(lblDate != null){
-	        		lblDate.setText(chat.date);
+	        		lblDate.setText(GlobalInformation.getDateString(chat.getLastMsgDate()));
 	        	}
 	        	if(lblLastMsg != null){
-	        		lblLastMsg.setText(chat.lastMsg);
+	        		lblLastMsg.setText(chat.getLastMsg());
 	        	}
 	        	
-	        	Log.d(Main.TAG,"+ " + chat.name);
+	        	Log.d(Main.TAG,"+ " + chat.getName());
 	        }
 		}
 		return v;

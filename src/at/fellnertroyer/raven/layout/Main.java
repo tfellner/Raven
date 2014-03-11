@@ -1,8 +1,13 @@
 package at.fellnertroyer.raven.layout;
 
-import android.os.Bundle;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,7 +15,8 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.SearchView;
 import at.fellnertroyer.raven.R;
-import at.fellnertroyer.raven.data.ChatContainer;
+import at.fellnertroyer.raven.data.GlobalInformation;
+import at.fellnertroyer.raven.data.GroupChatContainer;
 
 public class Main extends Activity {
 
@@ -101,14 +107,54 @@ public class Main extends Activity {
 	
 	public void dummyEntries(){
 		Log.d(TAG,"dummyEntries");
-		adapter.add(new ChatContainer("M.Mustermann", 	"Lorem Ipsum Quaxi Günter", 			"00:00", 0));
-		adapter.add(new ChatContainer("David", 			"Lorem Ipsum Quaxi Jochen", 			"01:00", 0));
-		adapter.add(new ChatContainer("Tobias", 		"Lorem Ipsum Quaxi Rüdiger Peter ...", 	"02:00", 0));
-		adapter.add(new ChatContainer("Jochen", 		"Lorem Ipsum Quaxi Günter",			 	"03:00", 0));
-		adapter.add(new ChatContainer("Günter", 		"Lorem Ipsum Quaxi Jochen", 			"05:00", 0));
-		adapter.add(new ChatContainer("Quaxi", 			"Lorem Ipsum Quaxi Rüdiger Peter ...", 	"05:00", 0));
-		adapter.add(new ChatContainer("Rüdiger", 		"Lorem Ipsum Quaxi Günter",		 		"06:00", 0));
-		adapter.add(new ChatContainer("Peter", 			"Lorem Ipsum Quaxi Jochen", 			"07:00", 0));
+		GregorianCalendar c1 = new GregorianCalendar();
+		c1.set(Calendar.DAY_OF_MONTH, 1);
+		
+		GregorianCalendar c2 = new GregorianCalendar();
+		c1.set(Calendar.DAY_OF_WEEK, 3);
+		
+		adapter.add(new GroupChatContainer("M.Mustermann", 	"Lorem Ipsum Quaxi Günter", 			c1));
+		adapter.add(new GroupChatContainer("David", 		"Lorem Ipsum Quaxi Jochen", 			c2));
+		adapter.add(new GroupChatContainer("Tobias", 		"Lorem Ipsum Quaxi Rüdiger Peter ...", 	new GregorianCalendar()));
+		adapter.add(new GroupChatContainer("Jochen", 		"Lorem Ipsum Quaxi Günter",			 	new GregorianCalendar()));
+		adapter.add(new GroupChatContainer("Günter", 		"Lorem Ipsum Quaxi Jochen", 			new GregorianCalendar()));
+		adapter.add(new GroupChatContainer("Quaxi", 		"Lorem Ipsum Quaxi Rüdiger Peter ...", 	new GregorianCalendar()));
+		adapter.add(new GroupChatContainer("Rüdiger", 		"Lorem Ipsum Quaxi Günter",		 		new GregorianCalendar()));
+		adapter.add(new GroupChatContainer("Peter", 		"Lorem Ipsum Quaxi Jochen", 			new GregorianCalendar()));
+		
+		
+	}
+	
+	public void loadSettings(){
+		// obtain telNr
+//		TelephonyManager tMgr = (TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
+//		GlobalInformation.telNr = tMgr.getLine1Number();
+		
+		//read contacts
+		
+//		ContentResolver cr = getContentResolver();
+//        Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,
+//                null, null, null, null);
+//        if (cur.getCount() > 0) {
+//            while (cur.moveToNext()) {
+//                  String id = cur.getString(cur.getColumnIndex(ContactsContract.Contacts._ID));
+//                  String name = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+//                  if (Integer.parseInt(cur.getString(
+//                        cur.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
+//                     Cursor pCur = cr.query(
+//                               ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+//                               null,
+//                               ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = ?",
+//                               new String[]{id}, null);
+//                     while (pCur.moveToNext()) {
+//                         String phoneNo = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+//                         //Toast.makeText(NativeContentProvider.this, "Name: " + name + ", Phone No: " + phoneNo, Toast.LENGTH_SHORT).show();
+//                     }
+//                    pCur.close();
+//                }
+//            }
+//        }
+		
 		
 	}
 

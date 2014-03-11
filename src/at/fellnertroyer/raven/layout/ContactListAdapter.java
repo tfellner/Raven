@@ -96,13 +96,13 @@ public class ContactListAdapter extends ArrayAdapter<Contact>{
 	        		img.setImageResource(R.drawable.ic_launcher);
 	        	}
 	        	if(lblName != null){
-	        		lblName.setText(contact.name);
+	        		lblName.setText(contact.getName());
 	        	}
 	        	if(lblInfo != null){
 	        		lblInfo.setVisibility(View.GONE);
 	        	}
 	        	if(lblStatus != null){
-	        		lblStatus.setText(contact.status);
+	        		lblStatus.setText(contact.getStatus());
 	        	}
 	        }
 		}
