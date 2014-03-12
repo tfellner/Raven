@@ -69,6 +69,7 @@
 	    android:layout_height="match_parent" >
 
 	    <LinearLayout
+	         android:id="@+id/layout_group_info_scroll_container"
 	        android:layout_width="match_parent"
 	        android:layout_height="match_parent"
 	        android:orientation="vertical" >
@@ -98,7 +99,9 @@
 	                android:layout_weight="1"
 	                android:ems="10"
 	                android:lines="1"
-	                android:text="Gruppenname" >
+	                android:text="Gruppenname"
+	                android:inputType="text"
+					android:imeOptions="actionDone">
 	            </EditText>
 	        </LinearLayout>
 
@@ -134,14 +137,26 @@
 	            android:text="4 MITGLIEDER"
 	            android:textColor="#777" />
 
-	        <ListView
-	            android:id="@+id/list_group_info_members"
+	        <LinearLayout
+	            android:id="@+id/llayout_group_info_members"
 	            android:layout_width="match_parent"
 	            android:layout_height="match_parent"
-	            android:layout_weight="0.16"
-	            android:background="@drawable/borderbottomtop" >
+	            android:background="@drawable/bordertop"
+	            android:orientation="vertical" >
 
-	        </ListView>
+	        </LinearLayout>
+
+	        <Button
+	            android:id="@+id/btn_group_info_add_member"
+	            android:layout_width="match_parent"
+	            android:layout_height="41dp"
+	            android:background="@drawable/borderbottom"
+	            android:gravity="left|center_vertical"
+	            android:onClick="btnGroupInfoAddMemberClicked"
+	            android:paddingLeft="20dp"
+	            android:text="+"
+	            android:textColor="@android:color/holo_blue_light"
+	            android:textSize="25sp" />
 
 	        <Button
 	            android:id="@+id/btn_group_info_leavegroup"
@@ -170,6 +185,7 @@
 	            android:paddingLeft="20dp"
 	            android:text="Gruppe erstellt: 9.3.2014 18:00"
 	            android:textColor="#777" />
+
 	    </LinearLayout>
 
 	</ScrollView>

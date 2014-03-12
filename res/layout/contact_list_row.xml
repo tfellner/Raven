@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llayout_contact_row"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="#FFF"
     android:orientation="horizontal"
-    android:paddingTop="4dp"
     android:paddingBottom="4dp"
     android:paddingLeft="10dp"
-    android:paddingRight="10dp">
+    android:paddingRight="10dp"
+    android:paddingTop="4dp" >
 
     <ImageView
         android:id="@+id/img_contactlist_icon"
@@ -46,6 +47,7 @@
                 android:layout_gravity="right|bottom"
                 android:layout_weight="0.8"
                 android:gravity="right"
+                android:paddingRight="10dp"
                 android:text="Admin"
                 android:textColor="@android:color/holo_red_dark"
                 android:textSize="12sp" />

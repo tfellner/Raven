@@ -129,6 +129,12 @@ public class ChatView extends Activity {
 		});
 	}
 	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		loadChatContainer();
+		super.onActivityResult(requestCode, resultCode, data);
+	}
+
 	public void btnChatSendClicked(final View v){
 		String text = txtInput.getText().toString();
 		if(!text.isEmpty()){
@@ -157,6 +163,7 @@ public class ChatView extends Activity {
 		
 		if(group){
 			Intent intent = new Intent(this,GroupInfo.class);
+			intent.putExtra(EXTRA_INDEX, chatContainerIndex);
 			startActivityForResult(intent, REQUEST_GROUP_INFO);
 		} else {
 			txtInput.setEnabled(false);

@@ -8,6 +8,7 @@ public class GlobalInformation {
 	public static String telNr;
 	public static ArrayList<Contact> allContacts = new ArrayList<Contact>();
 	public static ArrayList<ChatContainer> allChats = new ArrayList<ChatContainer>();
+	public static Contact you = new Contact("David", "Teststatus");
 	
 	private static String[] weekday = {"Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"};
 	

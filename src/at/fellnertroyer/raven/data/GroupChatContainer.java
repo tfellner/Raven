@@ -72,7 +72,7 @@ public class GroupChatContainer extends ChatContainer{
 	}
 	
 	public int getMemberCount(){
-		return members.size() + 2; // Members + Admin + You
+		return members.size() + (admin != null ? 1 : 0) + 1; // Members + Admin + You
 	}
 	
 	public int getMemberOnlineCount(){
