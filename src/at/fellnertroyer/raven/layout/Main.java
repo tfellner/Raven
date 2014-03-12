@@ -36,6 +36,7 @@ public class Main extends Activity {
 	
 	private static final int REQUEST_CHAT_VIEW = 111;
 	private static final int REQUEST_CONTACT_VIEW = 222;
+	private static final int REQUEST_SETTINGS_VIEW = 333;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -108,9 +109,10 @@ public class Main extends Activity {
 			}
 			break;
 		case R.id.action_settings: 
+			intent = new Intent(this, SettingsView.class);
+			startActivityForResult(intent, REQUEST_SETTINGS_VIEW);
 			break;
 		case R.id.action_favorits:
-			
 			break;
 		}
 		
@@ -135,6 +137,8 @@ public class Main extends Activity {
 	public void dummyEntries(){
 		Log.d(TAG,"dummyEntries");
 		
+		GlobalInformation.you = new Contact("David", "Test123");
+		
 		GlobalInformation.allChats = new ArrayList<ChatContainer>();
 		GlobalInformation.allContacts = new ArrayList<Contact>();
 		
@@ -151,6 +155,14 @@ public class Main extends Activity {
 		GlobalInformation.allContacts.add(new Contact("Aschauer","Ups jz ho is zbissn"));
 		GlobalInformation.allContacts.add(new Contact("Paul","He du Topf!"));
 		GlobalInformation.allContacts.add(new Contact("Luki","Hat irgendein Knabe lust auf interaktive Kommunkikation"));
+		
+		Contact contactBlocked = new Contact("Helga", "Bei olla Menschenliebe");
+		GlobalInformation.allContacts.add(contactBlocked);
+		GlobalInformation.blockedContacts.add(contactBlocked);
+		
+		Contact contactBlocked2 = new Contact("Zauner Mario", "Mauner Zario");
+		GlobalInformation.allContacts.add(contactBlocked2);
+		GlobalInformation.blockedContacts.add(contactBlocked2);
 		
 		GregorianCalendar c1 = new GregorianCalendar();
 		c1.set(Calendar.DAY_OF_MONTH, 1);
@@ -205,8 +217,8 @@ public class Main extends Activity {
 		Log.d(TAG, "letze Nachricht: für: " + GlobalInformation.allChats.get(0).getName() + ":" + GlobalInformation.allChats.get(0).getLastMsgString());
 		
 		// obtain telNr
-//		TelephonyManager tMgr = (TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
-//		GlobalInformation.telNr = tMgr.getLine1Number();
+		TelephonyManager tMgr = (TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
+		GlobalInformation.telNr = tMgr.getLine1Number();
 		
 		//read contacts
 		

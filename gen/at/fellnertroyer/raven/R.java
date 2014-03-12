@@ -35,20 +35,22 @@ public final class R {
         public static final int triangle_reverse=0x7f020008;
     }
     public static final class id {
-        public static final int action_contacts=0x7f090038;
-        public static final int action_favorits=0x7f090039;
-        public static final int action_newchat=0x7f090036;
-        public static final int action_newgroup=0x7f090037;
-        public static final int action_search=0x7f090035;
-        public static final int action_settings=0x7f090034;
+        public static final int action_contacts=0x7f09004a;
+        public static final int action_favorits=0x7f09004b;
+        public static final int action_newchat=0x7f090048;
+        public static final int action_newgroup=0x7f090049;
+        public static final int action_search=0x7f090047;
+        public static final int action_settings=0x7f090046;
         public static final int btn_chat_send=0x7f09000a;
         public static final int btn_group_info_add_member=0x7f09001d;
         public static final int btn_group_info_delete_group=0x7f09001f;
         public static final int btn_group_info_leavegroup=0x7f09001e;
+        public static final int btn_settings_add_blocked_contact=0x7f090033;
         public static final int img_chat_add=0x7f090008;
-        public static final int img_chatlist_icon=0x7f090023;
-        public static final int img_contactlist_icon=0x7f090030;
+        public static final int img_chatlist_icon=0x7f090034;
+        public static final int img_contactlist_icon=0x7f090042;
         public static final int img_group_info_pic=0x7f090017;
+        public static final int img_settings_profile_pic=0x7f09002a;
         public static final int layout_chat_header_back=0x7f090000;
         public static final int layout_chat_header_middle=0x7f090002;
         public static final int layout_contacts_header_back=0x7f09000b;
@@ -56,24 +58,26 @@ public final class R {
         public static final int layout_group_info_scroll_container=0x7f090016;
         public static final int layout_groupinfo_header_back=0x7f090011;
         public static final int layout_groupinfo_header_middle=0x7f090013;
-        public static final int lbl_chat_entity_info=0x7f09002b;
+        public static final int layout_settings_header_back=0x7f090023;
+        public static final int layout_settings_header_middle=0x7f090025;
+        public static final int lbl_chat_entity_info=0x7f09003c;
         public static final int lbl_chat_header_info=0x7f090004;
         public static final int lbl_chat_header_info2=0x7f090005;
         public static final int lbl_chat_header_name=0x7f090003;
-        public static final int lbl_chatentity_income_date=0x7f09002a;
-        public static final int lbl_chatentity_income_name=0x7f090028;
-        public static final int lbl_chatentity_income_text=0x7f090029;
-        public static final int lbl_chatentity_ownmsg_date=0x7f09002d;
-        public static final int lbl_chatentity_ownmsg_text=0x7f09002c;
-        public static final int lbl_chatentity_triangle1=0x7f090027;
-        public static final int lbl_chatentity_triangle2=0x7f09002e;
-        public static final int lbl_chatlist_date=0x7f090025;
-        public static final int lbl_chatlist_lastmsg=0x7f090026;
-        public static final int lbl_chatlist_name=0x7f090024;
+        public static final int lbl_chatentity_income_date=0x7f09003b;
+        public static final int lbl_chatentity_income_name=0x7f090039;
+        public static final int lbl_chatentity_income_text=0x7f09003a;
+        public static final int lbl_chatentity_ownmsg_date=0x7f09003e;
+        public static final int lbl_chatentity_ownmsg_text=0x7f09003d;
+        public static final int lbl_chatentity_triangle1=0x7f090038;
+        public static final int lbl_chatentity_triangle2=0x7f09003f;
+        public static final int lbl_chatlist_date=0x7f090036;
+        public static final int lbl_chatlist_lastmsg=0x7f090037;
+        public static final int lbl_chatlist_name=0x7f090035;
         public static final int lbl_chats_header_back=0x7f090001;
-        public static final int lbl_contactlist_info=0x7f090032;
-        public static final int lbl_contactlist_name=0x7f090031;
-        public static final int lbl_contactlist_status=0x7f090033;
+        public static final int lbl_contactlist_info=0x7f090044;
+        public static final int lbl_contactlist_name=0x7f090043;
+        public static final int lbl_contactlist_status=0x7f090045;
         public static final int lbl_contacts_header_back=0x7f09000c;
         public static final int lbl_contacts_header_title=0x7f09000e;
         public static final int lbl_group_info_date=0x7f090020;
@@ -81,18 +85,32 @@ public final class R {
         public static final int lbl_group_info_notification=0x7f090019;
         public static final int lbl_groupinfo_header_back=0x7f090012;
         public static final int lbl_groupinfo_header_name=0x7f090014;
+        public static final int lbl_settings_auto_backup=0x7f090030;
+        public static final int lbl_settings_auto_backup_time=0x7f090031;
+        public static final int lbl_settings_chat_background=0x7f09002f;
+        public static final int lbl_settings_header_back=0x7f090024;
+        public static final int lbl_settings_header_name=0x7f090026;
+        public static final int lbl_settings_own_telnr=0x7f090029;
+        public static final int lbl_settings_profile_status=0x7f09002c;
         public static final int list_chatlist=0x7f090022;
+        public static final int list_contact_dialog=0x7f090040;
         public static final int list_contactlist=0x7f090010;
         public static final int llayout_chat_container=0x7f090007;
-        public static final int llayout_contact_row=0x7f09002f;
+        public static final int llayout_contact_row=0x7f090041;
         public static final int llayout_group_info_members=0x7f09001c;
+        public static final int llayout_settings_blocked_contacts=0x7f090032;
+        public static final int llayout_settings_container=0x7f090028;
         public static final int scroll_chat=0x7f090006;
         public static final int scroll_group_info=0x7f090015;
+        public static final int scroll_settings=0x7f090027;
         public static final int search_chatlist=0x7f090021;
         public static final int search_contact_view=0x7f09000f;
         public static final int switch_group_info_notification=0x7f09001a;
+        public static final int switch_settings_inapp_vib=0x7f09002e;
+        public static final int switch_settings_notification=0x7f09002d;
         public static final int txt_chat_input=0x7f090009;
         public static final int txt_group_info_name=0x7f090018;
+        public static final int txt_settings_profile_name=0x7f09002b;
     }
     public static final class layout {
         public static final int activity_chat_view=0x7f030000;
@@ -100,12 +118,14 @@ public final class R {
         public static final int activity_group_info=0x7f030002;
         public static final int activity_main=0x7f030003;
         public static final int activity_new_group=0x7f030004;
-        public static final int all_chats_list_row=0x7f030005;
-        public static final int chat_entity_income_msg=0x7f030006;
-        public static final int chat_entity_info=0x7f030007;
-        public static final int chat_entity_own_msg=0x7f030008;
-        public static final int chat_row=0x7f030009;
-        public static final int contact_list_row=0x7f03000a;
+        public static final int activity_settings=0x7f030005;
+        public static final int all_chats_list_row=0x7f030006;
+        public static final int chat_entity_income_msg=0x7f030007;
+        public static final int chat_entity_info=0x7f030008;
+        public static final int chat_entity_own_msg=0x7f030009;
+        public static final int chat_row=0x7f03000a;
+        public static final int contact_dialog=0x7f03000b;
+        public static final int contact_list_row=0x7f03000c;
     }
     public static final class menu {
         public static final int chat_view=0x7f080000;
@@ -113,6 +133,7 @@ public final class R {
         public static final int group_info=0x7f080002;
         public static final int main=0x7f080003;
         public static final int new_group=0x7f080004;
+        public static final int settings=0x7f080005;
     }
     public static final class string {
         public static final int action_chats=0x7f060003;
@@ -123,15 +144,23 @@ public final class R {
         public static final int action_search=0x7f060004;
         public static final int action_settings=0x7f060002;
         public static final int app_name=0x7f060000;
-        public static final int chat_entity_info_contact_added=0x7f06000e;
-        public static final int chat_entity_info_contact_left=0x7f06000f;
-        public static final int chat_group_info_members=0x7f060010;
+        public static final int chat_entity_info_contact_added=0x7f060015;
+        public static final int chat_entity_info_contact_left=0x7f060016;
+        public static final int chat_group_info_members=0x7f060017;
         public static final int group_info_notification=0x7f06000a;
         public static final int hello_world=0x7f060001;
+        public static final int settings_blocked_contact_stettings=0x7f060011;
+        public static final int settings_chat_auto_backup=0x7f06000e;
+        public static final int settings_chat_background=0x7f06000d;
+        public static final int settings_chat_instant_backup=0x7f06000f;
+        public static final int settings_chat_settings=0x7f060010;
+        public static final int settings_in_app_vib=0x7f06000c;
+        public static final int settings_notification=0x7f06000b;
         public static final int title_activity_chat_view=0x7f060009;
-        public static final int title_activity_contact_view=0x7f06000c;
-        public static final int title_activity_group_info=0x7f06000b;
-        public static final int title_activity_new_group=0x7f06000d;
+        public static final int title_activity_contact_view=0x7f060013;
+        public static final int title_activity_group_info=0x7f060012;
+        public static final int title_activity_new_group=0x7f060014;
+        public static final int title_activity_settings=0x7f060018;
     }
     public static final class style {
         /** 

@@ -5,10 +5,29 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class GlobalInformation {
+	
+	public enum AutoBackupMode{
+		OFF("Aus"),
+		DAILY("Täglich"),
+		WEEKLY("Wöchentlich"),
+		MONTHLY("Monatlich");
+		
+		public final String text;
+		AutoBackupMode(String text){
+			this.text = text;
+		}
+	}
+	
 	public static String telNr;
 	public static ArrayList<Contact> allContacts = new ArrayList<Contact>();
 	public static ArrayList<ChatContainer> allChats = new ArrayList<ChatContainer>();
+	public static ArrayList<Contact> blockedContacts = new ArrayList<Contact>();
 	public static Contact you = new Contact("David", "Teststatus");
+	
+	public static boolean settingsNotifications = true;
+	public static boolean settingsInAppVibration = true;
+	
+	public static AutoBackupMode autoBackupMode = AutoBackupMode.DAILY;
 	
 	private static String[] weekday = {"Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag"};
 	

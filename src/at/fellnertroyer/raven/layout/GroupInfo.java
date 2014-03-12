@@ -11,11 +11,15 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.view.View.MeasureSpec;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -46,6 +50,8 @@ public class GroupInfo extends Activity {
 	private ContactListAdapter adapter;
 	private int chatContainerIndex = -1;
 	private GroupChatContainer chatContainer;
+	private int selectedIndexAlert = -1;
+	private ArrayList<Contact> allContacts;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,15 +70,9 @@ public class GroupInfo extends Activity {
 		} else {
 			loadChatContainer();
 		}
-		
 	}
 	
-	private void loadChatContainer(){
-		chatContainer = (GroupChatContainer)GlobalInformation.allChats.get(chatContainerIndex);
-		txtGroupName.setText(chatContainer.getName());
-		lblMemberCount.setText(chatContainer.getMemberCount() + " MITGLIEDER");
-		switchNotification.setChecked(chatContainer.isNotification());
-		
+	private void reloadMembers(){
 		ArrayList<ContactRowView> members = new ArrayList<ContactRowView>();
 		for(Contact c : chatContainer.getMembers()){
 			members.add(new ContactRowView(this, c, null));
@@ -84,7 +84,7 @@ public class GroupInfo extends Activity {
 		
 		Collections.sort(members);
 		
-		
+		layoutMembers.removeAllViews();
 		if(admin == null){
 			ContactRowView you = new ContactRowView(this, "Du",GlobalInformation.you.getStatus(),"Admin");
 			you.setBorderBottom();
@@ -99,6 +99,18 @@ public class GroupInfo extends Activity {
 			crv.setBorderBottom();
 			layoutMembers.addView(crv);
 		}
+	}
+	
+	private void loadChatContainer(){
+		Log.d(Main.TAG,"size: " + GlobalInformation.allContacts.size());
+		allContacts = new ArrayList<Contact>(GlobalInformation.allContacts);
+		
+		chatContainer = (GroupChatContainer)GlobalInformation.allChats.get(chatContainerIndex);
+		txtGroupName.setText(chatContainer.getName());
+		lblMemberCount.setText(chatContainer.getMemberCount() + " MITGLIEDER");
+		switchNotification.setChecked(chatContainer.isNotification());
+		
+		reloadMembers();
 	}
 	
 	private void init(){
@@ -149,7 +161,56 @@ public class GroupInfo extends Activity {
 	}
 	
 	public void btnGroupInfoAddMemberClicked(final View v){
+	
+		AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+		//final LinearLayout vDialog = (LinearLayout)getLayoutInflater().inflate(R.layout.contact_dialog, null);
+		//ListView list = (ListView)vDialog.findViewById(R.id.list_contact_dialog);
 		
+		
+		
+		ArrayList<Contact> contacts = new ArrayList<Contact>(allContacts);
+		//Log.d(Main.TAG,"contacts.size: " + contacts.size());
+		//Log.d(Main.TAG,"chatContainer.getMembers"+ chatContainer.getMembers());
+		for(Contact contact : chatContainer.getMembers()){
+			contacts.remove(contact);
+		}
+		if(chatContainer.getAdmin() != null){
+			contacts.remove(chatContainer.getAdmin());
+		}
+		
+		//Log.d(Main.TAG,"contacts: "+ contacts);
+		ListView list = new ListView(this);
+		ContactListAdapter a = new ContactListAdapter(this,R.layout.contact_list_row,contacts);
+		list.setAdapter(a);
+		alert.setView(list);
+		
+		selectedIndexAlert = -1;
+		
+		list.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View view, int pos,
+					long arg3) {
+				selectedIndexAlert = pos;
+			}
+		});
+		
+//		Contact selected = null;
+//		if(selectedIndexAlert < 0 || selectedIndexAlert >= contacts.size()){
+//			selected = contacts.get(selectedIndexAlert);
+//		}
+//		
+//		if(selected !=  null){
+//			addMember(selected);
+//		}
+		alert.setNegativeButton("Cancle", null);
+		alert.show();
+
+	}
+	
+	private void addMember(Contact contact){
+		chatContainer.addMember(contact);
+		reloadMembers();
 	}
 	
 	private void dummyEntities(){

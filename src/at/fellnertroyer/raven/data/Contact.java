@@ -35,4 +35,12 @@ public class Contact {
 	public void setOnline(boolean online) {
 		this.online = online;
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		return name + " - " + status;
+	}
+	
 }

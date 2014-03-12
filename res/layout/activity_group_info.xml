@@ -98,10 +98,12 @@
 	                android:layout_marginRight="20dp"
 	                android:layout_weight="1"
 	                android:ems="10"
-	                android:lines="1"
-	                android:text="Gruppenname"
+	                android:imeOptions="actionDone"
 	                android:inputType="text"
-					android:imeOptions="actionDone">
+	                android:lines="1"
+	                android:maxLines="1"
+	                android:text="Gruppenname" >
+
 	            </EditText>
 	        </LinearLayout>
 
@@ -141,8 +143,9 @@
 	            android:id="@+id/llayout_group_info_members"
 	            android:layout_width="match_parent"
 	            android:layout_height="match_parent"
-	            android:background="@drawable/bordertop"
-	            android:orientation="vertical" >
+	            android:background="@drawable/borderbottom"
+	            android:orientation="vertical"
+	            android:paddingLeft="20dp" >
 
 	        </LinearLayout>
 

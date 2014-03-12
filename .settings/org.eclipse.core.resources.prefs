@@ -1,6 +1,8 @@
 eclipse.preferences.version=1
+encoding//src/at/fellnertroyer/raven/data/GlobalInformation.java=UTF-8
 encoding//src/at/fellnertroyer/raven/data/GroupChatContainer.java=UTF-8
 encoding//src/at/fellnertroyer/raven/layout/ChatView.java=UTF-8
 encoding//src/at/fellnertroyer/raven/layout/ContactView.java=UTF-8
 encoding//src/at/fellnertroyer/raven/layout/GroupInfo.java=UTF-8
 encoding//src/at/fellnertroyer/raven/layout/Main.java=UTF-8
+encoding//src/at/fellnertroyer/raven/layout/SettingsView.java=UTF-8

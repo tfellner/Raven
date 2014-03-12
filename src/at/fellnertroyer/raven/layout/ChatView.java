@@ -67,7 +67,14 @@ public class ChatView extends Activity {
 		}
 	}
 	
+	private void updateChatContainer(){
+		
+		chatContainer = GlobalInformation.allChats.get(chatContainerIndex);
+		// Nachschauen ob neue nachrichten
+	}
+	
 	private void loadChatContainer(){
+		//Log.d(Main.TAG,"idx: " + chatContainerIndex + " size: " + GlobalInformation.allChats.size());
 		chatContainer = GlobalInformation.allChats.get(chatContainerIndex);
 		if(chatContainer instanceof GroupChatContainer){
 			group = true;
@@ -83,6 +90,7 @@ public class ChatView extends Activity {
 			lblChatInfo2.setVisibility(View.GONE);
 		}
 		
+		container.removeAllViews();
 		for(ChatEntity ce : chatContainer.getChatEntityList()){
 			if(ce instanceof IncomeMessage){
 				IncomeMessage im = (IncomeMessage)ce;

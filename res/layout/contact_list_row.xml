@@ -63,6 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:lines="1"
                 android:text="Lorem Ipsum Quaxi Günter ..."
                 android:textColor="#AAA"
                 android:textSize="12sp" />
